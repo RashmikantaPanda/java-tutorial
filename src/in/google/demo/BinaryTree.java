@@ -1,5 +1,8 @@
 package in.google.demo;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
     static class Node{
         int data;
@@ -9,6 +12,7 @@ public class BinaryTree {
             this.data=data;
         }
     }
+    static Node root;
     static int countLeafNodes(Node node)
     {
         if(node==null)
@@ -82,22 +86,150 @@ public class BinaryTree {
 
     }
 
+    static void InsetNode(Node temp, int key){
+        if(temp==null){
+            root=new Node(key);
+            return;
+        }
+        Queue<Node> queue=new LinkedList<Node>();
+        queue.add(temp);
+
+        while(!queue.isEmpty()){
+            temp=queue.peek();
+            queue.remove();
+
+            if(temp.left==null){
+                temp.left=new Node(key);
+                break;
+            }
+            else{
+                queue.add(temp.right);
+            }
+
+            if(temp.right==null){
+                temp.right=new Node(key);
+                break;
+            }
+            else{
+                queue.add(temp.right);
+            }
+        }
+    }
+
+    static void deleteDeepest(Node root,
+                              Node delNode)
+    {
+        Queue<Node> q = new LinkedList<Node>();
+        q.add(root);
+
+        Node temp = null;
+
+        // Do level order traversal until last node
+        while (!q.isEmpty())
+        {
+            temp = q.peek();
+            q.remove();
+
+            if (temp == delNode)
+            {
+                temp = null;
+                return;
+
+            }
+            if (temp.right!=null)
+            {
+                if (temp.right == delNode)
+                {
+                    temp.right = null;
+                    return;
+                }
+                else
+                    q.add(temp.right);
+            }
+
+            if (temp.left != null)
+            {
+                if (temp.left == delNode)
+                {
+                    temp.left = null;
+                    return;
+                }
+                else
+                    q.add(temp.left);
+            }
+        }
+    }
+
+
+    static void DeleteNode(Node root, int key)
+    {
+        if (root == null)
+            return;
+
+        if (root.left == null &&
+                root.right == null)
+        {
+            if (root.data == key)
+            {
+                root=null;
+                return;
+            }
+            else
+                return;
+        }
+
+        Queue<Node> DQueue = new LinkedList<Node>();
+        DQueue.add(root);
+        Node temp = null, keyNode = null;
+
+        // Do level order traversal until
+        // we find key and last node.
+        while (!DQueue.isEmpty())
+        {
+            temp = DQueue.peek();
+            DQueue.remove();
+
+            if (temp.data == key)
+                keyNode = temp;
+
+            if (temp.left != null)
+                DQueue.add(temp.left);
+
+            if (temp.right != null)
+                DQueue.add(temp.right);
+        }
+
+        if (keyNode != null)
+        {
+            int x = temp.data;
+            deleteDeepest(root, temp);
+            keyNode.data = x;
+        }
+    }
+
 
     public static void main(String args[]){
-        Node root=new Node(1);
-        root.left=new Node(2);
-//        root.left.right=new Node(10);
-        Node node1=root.right=new Node(5);
-        Node node2=node1.left=new Node(8);
-        Node node3=node1.right=new Node(4);
-        node2.left=new Node(10);
-        node2.right=new Node(2);
-        node3.right=new Node(6);
+//        Node root=new Node(15);
+//        root.left=new Node(2);
+////        root.left.right=new Node(10);
+//        Node node1=root.right=new Node(5);
+//        Node node2=node1.left=new Node(8);
+//        Node node3=node1.right=new Node(4);
+//        node2.left=new Node(10);
+//        node2.right=new Node(2);
+//        node3.right=new Node(6);
 
-        System.out.println("Height of Binary Tree is : "+HeightOfTree(root));
-        System.out.println("Total numbers of nodes in the binary tree is : "+CountNodes(root));
-        System.out.println("Leaf Nodes of the Tree is : "+countLeafNodes(root));
 
+        System.out.println("PostOrder Traversal : ");
+        PostOrderTraversal(root);
+        InsetNode(root,20);
+        InsetNode(root,10);
+        InsetNode(root,30);
+        InsetNode(root,80);
+        InsetNode(root,70);
+        InsetNode(root,90);
+        InsetNode(root,50);
+        System.out.println("\nAfter Inseting a node");
         System.out.println("PostOrder Traversal : ");
         PostOrderTraversal(root);
         System.out.println();
@@ -106,6 +238,11 @@ public class BinaryTree {
         System.out.println();
         System.out.println("InOrder Traversal : ");
         InOrderTraversal(root);
+
+        System.out.println("Height of Binary Tree is : "+HeightOfTree(root));
+        System.out.println("Total numbers of nodes in the binary tree is : "+CountNodes(root));
+        System.out.println("Leaf Nodes of the Tree is : "+countLeafNodes(root));
+
 
     }
 }
