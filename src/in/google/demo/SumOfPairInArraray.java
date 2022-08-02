@@ -1,7 +1,6 @@
 package in.google.demo;
-
 import static java.util.Arrays.sort;
-
+//Given an random array ,we have to find the sum of pairs whose sum is equal to the target
 public class SumOfPairInArraray {
 
     static void findPair(int nums[], int n, int target)
