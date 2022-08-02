@@ -220,8 +220,8 @@ public class BinaryTree {
 //        node3.right=new Node(6);
 
 
-        System.out.println("PostOrder Traversal : ");
-        PostOrderTraversal(root);
+//        System.out.println("PostOrder Traversal : ");
+//        PostOrderTraversal(root);
         InsetNode(root,20);
         InsetNode(root,10);
         InsetNode(root,30);
@@ -229,7 +229,7 @@ public class BinaryTree {
         InsetNode(root,70);
         InsetNode(root,90);
         InsetNode(root,50);
-        System.out.println("\nAfter Inseting a node");
+        System.out.println("\nAfter Inseting node");
         System.out.println("PostOrder Traversal : ");
         PostOrderTraversal(root);
         System.out.println();
@@ -239,9 +239,19 @@ public class BinaryTree {
         System.out.println("InOrder Traversal : ");
         InOrderTraversal(root);
 
-        System.out.println("Height of Binary Tree is : "+HeightOfTree(root));
+        System.out.println("\nHeight of Binary Tree is : "+HeightOfTree(root));
         System.out.println("Total numbers of nodes in the binary tree is : "+CountNodes(root));
         System.out.println("Leaf Nodes of the Tree is : "+countLeafNodes(root));
+
+        System.out.println("\nDeleting a node");
+        DeleteNode(root,80);
+        System.out.println("After deletion , the InOrder Traversal is  : ");
+        InOrderTraversal(root);
+
+        System.out.println("\nHeight of Binary Tree is : "+HeightOfTree(root));
+        System.out.println("Total numbers of nodes in the binary tree is : "+CountNodes(root));
+        System.out.println("Leaf Nodes of the Tree is : "+countLeafNodes(root));
+
 
 
     }
