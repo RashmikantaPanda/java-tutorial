@@ -68,7 +68,8 @@ public class Student {
             int age2 = y.getAge();
 
             return age2-age1;
-        }};
+        }
+    };
 
     public String toString() {
         return "[ id : " + id + ", name : " + name + ", age : " + age + ", city : " + city + " ]";
@@ -126,6 +127,7 @@ public class Student {
 //                System.out.println("City : " + stu.city);
 //                System.out.println("--------------------------------------------");
         }
+
 
         System.out.println("Age wise sorting in ReverseOrder");
         Collections.sort(students, Student.StuAgeComparator);
