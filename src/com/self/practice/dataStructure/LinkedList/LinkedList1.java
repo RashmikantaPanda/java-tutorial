@@ -266,6 +266,8 @@ public class LinkedList1 {
                     case 10:
                         list1.display();
                         break;
+
+                    case 11:
                     case 20:
                         break;
                     default:
