@@ -1,4 +1,4 @@
-//MergeTwoList
+//Create two list and add them into another list
 package com.self.practice.Collection;
 
 import java.util.ArrayList;
