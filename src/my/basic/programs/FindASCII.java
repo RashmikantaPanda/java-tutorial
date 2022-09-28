@@ -1,4 +1,4 @@
-//ASCII
+//ASCII value
 package my.basic.programs;
 
 import java.util.Scanner;
